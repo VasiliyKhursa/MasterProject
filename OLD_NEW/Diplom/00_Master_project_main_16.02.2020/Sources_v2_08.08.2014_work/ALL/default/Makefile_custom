@@ -15,7 +15,7 @@ COMMON = -mmcu=$(MCU)
 
 ## Compile options common for all C compilation units.
 CFLAGS = $(COMMON)
-CFLAGS += -Wall -gdwarf-2 -std=gnu99                                                    -DF_CPU=12000000UL -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
+CFLAGS += -Wall -gdwarf-2 -std=gnu99 -DF_CPU=12000000UL -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
 CFLAGS += -MD -MP -MT $(*F).o -MF dep/$(@F).d 
 
 ## Assembly specific flags
@@ -37,53 +37,18 @@ HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
 
 ## Include Directories
-INCLUDES = -I"E:\university\cnty\master_project\OLD_NEW\Diplom\00_Master_project_main_16.02.2020\Sources_v2_08.08.2014_work\ALL\freertos\Source\include" 
-INCLUDES += -I"E:\university\cnty\master_project\OLD_NEW\Diplom\00_Master_project_main_16.02.2020\Sources_v2_08.08.2014_work\ALL\freertos\Source\portable\GCC\ATMega323" 
-INCLUDES += -I"E:\university\cnty\master_project\OLD_NEW\Diplom\00_Master_project_main_16.02.2020\Sources_v2_08.08.2014_work\ALL\."
-INCLUDES += -I"E:\university\cnty\master_project\OLD_NEW\Diplom\00_Master_project_main_16.02.2020\Sources_v2_08.08.2014_work\ALL\ff"
-INCLUDES += -I"E:\university\cnty\master_project\OLD_NEW\Diplom\00_Master_project_main_16.02.2020\Sources_v2_08.08.2014_work\ALL\eth"
-INCLUDES += -I"E:\university\cnty\master_project\OLD_NEW\Diplom\00_Master_project_main_16.02.2020\Sources_v2_08.08.2014_work\ALL\adc"
-INCLUDES += -I"E:\university\cnty\master_project\OLD_NEW\Diplom\00_Master_project_main_16.02.2020\Sources_v2_08.08.2014_work\ALL\i2c"
-INCLUDES += -I"E:\university\cnty\master_project\OLD_NEW\Diplom\00_Master_project_main_16.02.2020\Sources_v2_08.08.2014_work\ALL\lcd"
-INCLUDES += -I"E:\university\cnty\master_project\OLD_NEW\Diplom\00_Master_project_main_16.02.2020\Sources_v2_08.08.2014_work\ALL\ls020"
-INCLUDES += -I"E:\university\cnty\master_project\OLD_NEW\Diplom\00_Master_project_main_16.02.2020\Sources_v2_08.08.2014_work\ALL\one-wire"
-INCLUDES += -I"E:\university\cnty\master_project\OLD_NEW\Diplom\00_Master_project_main_16.02.2020\Sources_v2_08.08.2014_work\ALL\spi"
-INCLUDES += -I"E:\university\cnty\master_project\OLD_NEW\Diplom\00_Master_project_main_16.02.2020\Sources_v2_08.08.2014_work\ALL\uart" 
-
-## Objects that must be built in order to link
-OBJECTS = main.o
-OBJECTS += Main_ALL.o
-OBJECTS += Main_LAN.o
-OBJECTS += ccsbcs.o
-OBJECTS += diskio.o
-OBJECTS += enc28j60.o
-OBJECTS += ff.o
-OBJECTS += lan.o
-OBJECTS += ntp.o
-OBJECTS += UART_routines.o
-OBJECTS += tasks.o
-OBJECTS += port.o
-OBJECTS += list.o
-OBJECTS += heap_2.o
-OBJECTS += Main_RTOS.o
-OBJECTS += croutine.o
-OBJECTS += queue.o
-OBJECTS += timers.o
-OBJECTS += adc.o
-OBJECTS += adc_ex.o
-OBJECTS += at_command.o
-OBJECTS += ds18x20.o
-OBJECTS += hd44780.o
-OBJECTS += i2c.o
-OBJECTS += lcd.o
-OBJECTS += onewire.o
-OBJECTS += spi.o
-OBJECTS += uart.o
-OBJECTS += main_LS020.o
-OBJECTS += spiLS020.o
-OBJECTS += main_LS020_2.o
-OBJECTS += ls020.o
-OBJECTS += ds1307.o
+INCLUDES =  -I"E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/freertos/Source/include" 
+INCLUDES += -I"E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/freertos/Source/portable/GCC/ATMega323" 
+INCLUDES += -I"E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/."
+INCLUDES += -I"E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/ff"
+INCLUDES += -I"E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/eth"
+INCLUDES += -I"E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/adc"
+INCLUDES += -I"E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/i2c"
+INCLUDES += -I"E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/lcd"
+INCLUDES += -I"E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/ls020"
+INCLUDES += -I"E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/one-wire"
+INCLUDES += -I"E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/spi"
+INCLUDES += -I"E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/uart" 
 
 SRCS = main.c
 SRCS += Main_ALL.c
@@ -119,120 +84,54 @@ SRCS += main_LS020_2.c
 SRCS += ls020.c
 SRCS += ds1307.c
 
-OBJS = $(SRCS:.c=.o)
+SRC_DIRS =  E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/freertos/Source
+SRC_DIRS += E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/freertos/Source/include 
+SRC_DIRS += E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/freertos/Source/portable/GCC/ATMega323
+SRC_DIRS += E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/freertos/Source/portable/MemMang
+SRC_DIRS += E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL
+SRC_DIRS += E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/ff
+SRC_DIRS += E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/eth
+SRC_DIRS += E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/adc
+SRC_DIRS += E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/i2c
+SRC_DIRS += E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/lcd
+SRC_DIRS += E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/ls020
+SRC_DIRS += E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/one-wire
+SRC_DIRS += E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/spi
+SRC_DIRS += E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/uart
+
+SRCS_PATHS = $(foreach src,$(SRCS),$(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/$(src))))
+
+OBJ_DIR = E:/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/default
+
+OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(notdir $(SRCS_PATHS)))
 
 ${info SRCS = ${SRCS}}
 ${info OBJS = ${OBJS}}
+${info SRCS_PATHS = ${SRCS_PATHS}}
+
+find_source = $(firstword $(filter %$(1:.o=.c),$(SRCS_PATHS)))
+
+## Build
+all: $(TARGET) main.hex main.eep main.lss size
+	@echo "Target all finished"
+
+## Compile
+$(OBJ_DIR)/%.o: $(SRCS_PATHS)
+	@echo "Compile target:"
+	@$(eval OBJ_PATH = $@)
+	@echo "OBJ_PATH      : " "${OBJ_PATH}"
+	@$(eval OBJ_NAME = $(notdir $(OBJ_PATH)))
+	@$(eval SRC_FILE = $(call find_source,$(OBJ_NAME)))
+	@echo "SRC_FILE      : " "${SRC_FILE}"
+	$(CC) $(INCLUDES) $(CFLAGS) -c  '${SRC_FILE}' -o '${OBJ_PATH}'
 
 ## Objects explicitly added by the user
 LINKONLYOBJECTS = 
 
-## Build
-all: $(TARGET) main.hex main.eep main.lss size
-
-## Compile
-main.o: ../main.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-Main_ALL.o: ../Main_ALL.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-Main_LAN.o: ../Main_LAN.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-ccsbcs.o: ../ff/ccsbcs.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-diskio.o: ../ff/diskio.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-enc28j60.o: ../eth/enc28j60.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-ff.o: ../ff/ff.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-lan.o: ../eth/lan.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-ntp.o: ../eth/ntp.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-UART_routines.o: ../ff/UART_routines.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-tasks.o: ../freertos/Source/tasks.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-port.o: ../freertos/Source/portable/GCC/ATMega323/port.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-list.o: ../freertos/Source/list.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-heap_2.o: ../freertos/Source/portable/MemMang/heap_2.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-Main_RTOS.o: ../Main_RTOS.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-croutine.o: ../freertos/Source/croutine.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-queue.o: ../freertos/Source/queue.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-timers.o: ../freertos/Source/timers.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-adc.o: ../adc/adc.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-adc_ex.o: ../adc/adc_ex.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-at_command.o: ../uart/at_command.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-ds18x20.o: ../one-wire/ds18x20.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-hd44780.o: ../lcd/hd44780.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-i2c.o: ../i2c/i2c.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-lcd.o: ../lcd/lcd.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-onewire.o: ../one-wire/onewire.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-spi.o: ../spi/spi.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-uart.o: ../uart/uart.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-main_LS020.o: ../ls020/main_LS020.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-spiLS020.o: ../ls020/spiLS020.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-main_LS020_2.o: ../ls020/main_LS020_2.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-ls020.o: ../ls020/ls020.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-ds1307.o: ../i2c/ds1307.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-##Link
-$(TARGET): $(OBJECTS)
-	 $(CC) $(LDFLAGS) $(OBJECTS) $(LINKONLYOBJECTS) $(LIBDIRS) $(LIBS) -o $(TARGET)
+## Link
+$(TARGET): $(OBJS)
+	@echo "Link target   : $@"
+	$(CC) $(LDFLAGS) $(OBJS) $(LINKONLYOBJECTS) $(LIBDIRS) $(LIBS) -o $(TARGET)
 
 %.hex: $(TARGET)
 	avr-objcopy -O ihex $(HEX_FLASH_FLAGS)  $< $@
@@ -249,8 +148,18 @@ size: ${TARGET}
 
 ## Clean target
 .PHONY: clean
-clean:
-	-rm -rf $(OBJECTS) main.elf dep/* main.hex main.eep main.lss main.map
+clean: clean_artifacts clean_objects
+	@echo "Target clean finished"
+
+clean_objects: $(OBJS)
+	@echo "Cleaning object files..."
+	@for obj in $(OBJS); do \
+		echo "Removing object: $$obj"; \
+		rm -f $$obj; \
+	done
+
+clean_artifacts:
+	-rm -rf main.elf dep/* main.hex main.eep main.lss main.map
 
 
 ## Other dependencies
