@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>7.0</ProjectVersion>
+    <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
+    <ProjectGuid>79e4ecfc-1fce-4c7a-9f3d-1f08b4b2f7a9</ProjectGuid>
+    <Name>main</Name>
+    <avrdevice>atmega2560</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <AvrProjectType>Importer</AvrProjectType>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFileName>main</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <ToolchainFlavour>WinAVR</ToolchainFlavour>
+    <avrtool />
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <CacheFlash>true</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <UncachedRange />
+    <preserveEEPROM>true</preserveEEPROM>
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <BootSegment>2</BootSegment>
+    <ResetRule>0</ResetRule>
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <EraseKey />
+    <AsfFrameworkConfig>
+      <framework-data xmlns="">
+  <options />
+  <configurations />
+  <files />
+  <documentation help="" />
+  <offline-documentation help="" />
+  <dependencies>
+    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.49.1" />
+  </dependencies>
+</framework-data>
+    </AsfFrameworkConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'default' ">
+    <OutputPath>bin\default\</OutputPath>
+    <ToolchainSettings>
+      <AvrGcc>
+  <avrgcc.common.Device>-mmcu=atmega2560 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega2560"</avrgcc.common.Device>
+  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+  <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+  <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+  <avrgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>F_CPU=12000000UL</Value>
+    </ListValues>
+  </avrgcc.compiler.symbols.DefSymbols>
+  <avrgcc.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>..\freertos\Source\include</Value>
+      <Value>..\freertos\Source\portable\GCC\ATMega323</Value>
+      <Value>..\.</Value>
+      <Value>..\ff</Value>
+      <Value>..\eth</Value>
+      <Value>..\adc</Value>
+      <Value>..\i2c</Value>
+      <Value>..\lcd</Value>
+      <Value>..\ls020</Value>
+      <Value>..\one-wire</Value>
+      <Value>..\spi</Value>
+      <Value>..\uart</Value>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value>
+    </ListValues>
+  </avrgcc.compiler.directories.IncludePaths>
+  <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+  <avrgcc.compiler.miscellaneous.OtherFlags>-gdwarf-2 -std=gnu99 -D__AVR_LIBC_DEPRECATED_ENABLE__</avrgcc.compiler.miscellaneous.OtherFlags>
+  <avrgcc.assembler.general.AssemblerFlags>-Wall -gdwarf-2 -std=gnu99                                                    -DF_CPU=12000000UL -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums</avrgcc.assembler.general.AssemblerFlags>
+  <avrgcc.assembler.general.IncludePaths>
+    <ListValues>
+      <Value>..\freertos\Source\include</Value>
+      <Value>..\freertos\Source\portable\GCC\ATMega323</Value>
+      <Value>..\.</Value>
+      <Value>..\ff</Value>
+      <Value>..\eth</Value>
+      <Value>..\adc</Value>
+      <Value>..\i2c</Value>
+      <Value>..\lcd</Value>
+      <Value>..\ls020</Value>
+      <Value>..\one-wire</Value>
+      <Value>..\spi</Value>
+      <Value>..\uart</Value>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value>
+    </ListValues>
+  </avrgcc.assembler.general.IncludePaths>
+</AvrGcc>
+    </ToolchainSettings>
+    <BuildTarget>all</BuildTarget>
+    <CleanTarget>clean</CleanTarget>
+  </PropertyGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
+  <ItemGroup>
+    <Compile Include="myutils.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Folder Include="ff" />
+    <Compile Include="ff\diskio.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\ff.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\integer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\UART_routines.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\ccsbcs.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\diskio.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\ff.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\UART_routines.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Folder Include="eth" />
+    <Compile Include="eth\enc28j60.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="eth\lan.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="eth\ntp.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="eth\enc28j60.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="eth\lan.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="eth\ntp.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Folder Include="freertos" />
+    <Folder Include="freertos\Source" />
+    <Folder Include="freertos\Source\include" />
+    <Compile Include="freertos\Source\include\FreeRTOSConfig.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="freertos\Source\include\semphr.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="freertos\Source\include\StackMacros.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="freertos\Source\tasks.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Folder Include="freertos\Source\portable" />
+    <Folder Include="freertos\Source\portable\GCC" />
+    <Folder Include="freertos\Source\portable\GCC\ATMega323" />
+    <Compile Include="freertos\Source\portable\GCC\ATMega323\port.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Folder Include="freertos\Source\portable\MemMang" />
+    <Compile Include="freertos\Source\portable\MemMang\heap_2.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="freertos\Source\list.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="freertos\Source\croutine.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="freertos\Source\queue.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="freertos\Source\timers.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Folder Include="adc" />
+    <Compile Include="adc\adc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="adc\adc_ex.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="adc\adc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="adc\adc_ex.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Folder Include="uart" />
+    <Compile Include="uart\AT_COMMAND.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="uart\uart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="uart\at_command.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="uart\uart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Folder Include="one-wire" />
+    <Compile Include="one-wire\ds18x20.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="one-wire\onewire.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="one-wire\ds18x20.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="one-wire\onewire.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Folder Include="lcd" />
+    <Compile Include="lcd\hd44780.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lcd\lcd.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lcd\hd44780.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lcd\lcd.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Folder Include="i2c" />
+    <Compile Include="i2c\i2c.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="i2c\ds1307.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="i2c\i2c.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="i2c\ds1307.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Folder Include="spi" />
+    <Compile Include="spi\spi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="spi\spi.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Folder Include="ls020" />
+    <Compile Include="ls020\spiLS020.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ls020\ls020.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ls020\main_LS020.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ls020\spiLS020.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ls020\main_LS020_2.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ls020\ls020.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="main.c">
+      <SubType>compile</SubType>
+      <CustomCompilationSetting Condition="'$(Configuration)' == 'default'">
+      </CustomCompilationSetting>
+    </Compile>
+    <Compile Include="Main_ALL.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Main_LAN.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Main_RTOS.c">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
