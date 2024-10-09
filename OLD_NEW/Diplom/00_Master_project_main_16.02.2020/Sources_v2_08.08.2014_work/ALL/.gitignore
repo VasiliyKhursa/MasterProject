@@ -1,0 +1,15 @@
+*.o
+*.d
+
+default/main.o
+default/Main_RTOS.o
+#default/Makefile
+default/main.elf
+default/main.hex
+default/main.lss
+default/main.map
+default/main.o
+default/main.eep
+
+default/NUL
+default/dep
