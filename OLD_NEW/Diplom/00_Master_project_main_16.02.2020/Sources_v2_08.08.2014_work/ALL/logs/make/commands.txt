@@ -1,0 +1,7 @@
+Professional@User-PC MINGW64 /e/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/default (master)
+$ ../toolchain/make.exe clean 2>&1 | tee.exe /tmp/make_clean.log
+rm -rf main.o Main_ALL.o Main_LAN.o ccsbcs.o diskio.o enc28j60.o ff.o lan.o ntp.o UART_routines.o tasks.o port.o list.o heap_2.o Main_RTOS.o croutine.o queue.o timers.o adc.o adc_ex.o at_command.o ds18x20.o hd44780.o i2c.o lcd.o onewire.o spi.o uart.o main_LS020.o spiLS020.o main_LS020_2.o ls020.o ds1307.o  main.elf dep/* main.hex main.eep main.lss main.map
+
+Professional@User-PC MINGW64 /e/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/default (master)
+$ ../toolchain/make.exe all 2>&1 | tee.exe /tmp/make_all.log
+...
