@@ -1,4 +1,4 @@
-#include "spils020.h"
+#include "spiLS020.h"
 #include <avr/io.h>
 
 void InitSPI(char Mode, char Setings, char DivFrequency, char Direction)
@@ -34,22 +34,22 @@ void InitSPI(char Mode, char Setings, char DivFrequency, char Direction)
 	SPCR = 0x00;
 	SPSR = 0x00;
 
-//SPCR:SPI Control Register – SPCR 
-// Bit 7 – SPIE: SPI Interrupt Enable 
-// Bit 6 – SPE: SPI Enable 
-// Bit 5 – DORD: Data Order 
-// Bit 4 – MSTR: Master/Slave Select 
-// Bit 3 – CPOL: Clock Polarity 
-// Bit 2 – CPHA: Clock Phase 
-// Bits 1, 0 – SPR1, SPR0: SPI Clock Rate Select 1 and 0 
+//SPCR:SPI Control Register ï¿½ SPCR 
+// Bit 7 ï¿½ SPIE: SPI Interrupt Enable 
+// Bit 6 ï¿½ SPE: SPI Enable 
+// Bit 5 ï¿½ DORD: Data Order 
+// Bit 4 ï¿½ MSTR: Master/Slave Select 
+// Bit 3 ï¿½ CPOL: Clock Polarity 
+// Bit 2 ï¿½ CPHA: Clock Phase 
+// Bits 1, 0 ï¿½ SPR1, SPR0: SPI Clock Rate Select 1 and 0 
 
 	SPSR = 1<<SPIF|0<<WCOL|0<<SPI2X;
 
-//SPSR:SPI Status Register – SPSR 
-// Bit 7 – SPIF: SPI Interrupt Flag 
-// Bit 6 – WCOL: Write COLlision flag 
-// Bit 5..1 – Res: Reserved Bits 
-// Bit 0 – SPI2X: Double SPI Speed Bit 
+//SPSR:SPI Status Register ï¿½ SPSR 
+// Bit 7 ï¿½ SPIF: SPI Interrupt Flag 
+// Bit 6 ï¿½ WCOL: Write COLlision flag 
+// Bit 5..1 ï¿½ Res: Reserved Bits 
+// Bit 0 ï¿½ SPI2X: Double SPI Speed Bit 
 
 
 switch (Mode) 

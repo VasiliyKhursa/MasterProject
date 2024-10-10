@@ -72,15 +72,15 @@ Changes from V2.6.0
 #ifdef USE_RTC_TIMER
 	#if defined(__AVR_ATmega640__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
 		#define __ATmegaxx0__
-		#define TIMER_COMPARE_SIG	SIG_OUTPUT_COMPARE2A
-		#warning "SIG_OUTPUT_COMPARE2A is TIMER_COMPARE_SIG."
+		//#define TIMER_COMPARE_SIG	SIG_OUTPUT_COMPARE2A
+		//#warning "SIG_OUTPUT_COMPARE2A is TIMER_COMPARE_SIG."
 	#else
-		#define TIMER_COMPARE_SIG	SIG_OUTPUT_COMPARE0A
-		#warning "SIG_OUTPUT_COMPARE0A is TIMER_COMPARE_SIG."
+		//#define TIMER_COMPARE_SIG	SIG_OUTPUT_COMPARE0A
+		//#warning "SIG_OUTPUT_COMPARE0A is TIMER_COMPARE_SIG."
 	#endif
 #else
-	#define TIMER_COMPARE_SIG	SIG_OUTPUT_COMPARE1A
-	#warning "SIG_OUTPUT_COMPARE1A is TIMER_COMPARE_SIG."
+	//#define TIMER_COMPARE_SIG	SIG_OUTPUT_COMPARE1A
+	//#warning "SIG_OUTPUT_COMPARE1A is TIMER_COMPARE_SIG."
 #endif
 
 /* Start tasks with interrupts enables. */
@@ -672,7 +672,7 @@ void vPortYieldFromTick( void )
 
 void vPortSystemClockEnable( portBASE_TYPE Enable )
 {
-	portCHAR ucLowByte;												// в FreeRTOS.org V4.8.0 было просто uc
+	portCHAR ucLowByte;												// пїЅ FreeRTOS.org V4.8.0 пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ uc
 
 #ifndef USE_RTC_TIMER
 	ucLowByte = TIMSK;
@@ -873,8 +873,9 @@ static void prvSetupTimerInterrupt( void )
 	 * the context is saved at the start of vPortYieldFromTick().  The tick
 	 * count is incremented after the context is saved.
 	 */
-	void TIMER_COMPARE_SIG( void ) __attribute__ ( ( signal, naked ) );				//FreeRTOS.org V7.6.0 + заменил название SIG_OUTPUT_COMPARE1A на TIMER_COMPARE_SIG
-	void TIMER_COMPARE_SIG( void )
+	//void TIMER_COMPARE_SIG( void ) __attribute__ ( ( signal, naked ) );				//FreeRTOS.org V7.6.0 + пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ SIG_OUTPUT_COMPARE1A пїЅпїЅ TIMER_COMPARE_SIG
+	//void TIMER_COMPARE_SIG( void )
+	ISR(TIM1_COMPA_vect)
 	{
 		vPortYieldFromTick();
 		asm volatile ( "reti" );
