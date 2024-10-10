@@ -1,0 +1,194 @@
+###############################################################################
+# Makefile for the project main
+###############################################################################
+
+## Folder parameters
+PWD := $(shell pwd)
+
+TOOLCHAIN_ROOT := toolchain/linux/avr8-gnu-toolchain-linux_x86_64/
+TOOLCHAIN_BIN  := ${TOOLCHAIN_ROOT}/bin
+
+TOOLCHAIN_ROOT_PATH := ${PWD}/../${TOOLCHAIN}
+TOOLCHAIN_BIN_PATH  := ${PWD}/../${TOOLCHAIN_BIN}
+
+$(info PATH = ${PATH})
+$(info PWD = ${PWD})
+$(info TOOLCHAIN_ROOT_PATH = ${TOOLCHAIN_ROOT_PATH})
+$(info TOOLCHAIN_BIN_PATH  = ${TOOLCHAIN_BIN_PATH})
+
+export PATH := $(TOOLCHAIN_BIN_PATH):$(PATH)
+
+## General Flags
+PROJECT = main
+MCU = atmega2560
+TARGET = main.elf
+CC = avr-gcc
+
+CPP = avr-g++
+
+## Options common to compile, link and assembly rules
+COMMON = -mmcu=$(MCU)
+
+## Compile options common for all C compilation units.
+CFLAGS = $(COMMON)
+CFLAGS += -Wall
+CFLAGS += -gdwarf-2
+CFLAGS += -std=gnu99
+CFLAGS += -DF_CPU=12000000UL
+CFLAGS += -Os
+CFLAGS += -funsigned-char
+CFLAGS += -funsigned-bitfields
+CFLAGS += -fpack-struct
+CFLAGS += -fshort-enums
+
+CFLAGS += -MD -MP -MT $(*F).o -MF dep/$(@F).d 
+
+## Assembly specific flags
+ASMFLAGS = $(COMMON)
+ASMFLAGS += $(CFLAGS)
+ASMFLAGS += -x assembler-with-cpp -Wa,-gdwarf2
+
+## Linker flags
+LDFLAGS = $(COMMON)
+LDFLAGS +=  -Wl,-Map=main.map
+
+
+## Intel Hex file production flags
+HEX_FLASH_FLAGS = -R .eeprom -R .fuse -R .lock -R .signature
+
+HEX_EEPROM_FLAGS = -j .eeprom
+HEX_EEPROM_FLAGS += --set-section-flags=.eeprom="alloc,load"
+HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
+
+
+## Include Directories
+INCLUDES =  -I"/mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/freertos/Source/include" 
+INCLUDES += -I"/mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/freertos/Source/portable/GCC/ATMega323" 
+INCLUDES += -I"/mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/."
+INCLUDES += -I"/mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/ff"
+INCLUDES += -I"/mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/eth"
+INCLUDES += -I"/mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/adc"
+INCLUDES += -I"/mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/i2c"
+INCLUDES += -I"/mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/lcd"
+INCLUDES += -I"/mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/ls020"
+INCLUDES += -I"/mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/one-wire"
+INCLUDES += -I"/mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/spi"
+INCLUDES += -I"/mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/uart" 
+
+# My Sources
+SRCS =  main.c
+SRCS += Main_ALL.c
+SRCS += Main_LAN.c
+SRCS += Main_RTOS.c
+SRCS += main_LS020.c
+#SRCS += main_LS020_2.c
+SRCS += adc.c
+SRCS += adc_ex.c
+SRCS += at_command.c
+SRCS += ds18x20.c
+SRCS += hd44780.c
+SRCS += i2c.c
+SRCS += lcd.c
+SRCS += onewire.c
+SRCS += spi.c
+SRCS += uart.c
+SRCS += spiLS020.c
+SRCS += ls020.c
+SRCS += ds1307.c
+
+# FatFS
+SRCS += ff.c
+SRCS += ccsbcs.c
+SRCS += diskio.c
+SRCS += UART_routines.c
+
+# Ethernet
+SRCS += enc28j60.c
+SRCS += lan.c
+SRCS += ntp.c
+
+# FreeRTOS
+SRCS += tasks.c
+SRCS += port.c
+SRCS += list.c
+SRCS += heap_2.c
+SRCS += croutine.c
+SRCS += queue.c
+SRCS += timers.c
+
+SRC_DIRS =  /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/freertos/Source
+SRC_DIRS += /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/freertos/Source/include 
+SRC_DIRS += /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/freertos/Source/portable/GCC/ATMega323
+SRC_DIRS += /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/freertos/Source/portable/MemMang
+SRC_DIRS += /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL
+SRC_DIRS += /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/ff
+SRC_DIRS += /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/eth
+SRC_DIRS += /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/adc
+SRC_DIRS += /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/i2c
+SRC_DIRS += /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/lcd
+SRC_DIRS += /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/ls020
+SRC_DIRS += /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/one-wire
+SRC_DIRS += /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/spi
+SRC_DIRS += /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/uart
+
+SRCS_PATHS = $(foreach src,$(SRCS),$(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/$(src))))
+OBJ_DIR = /mnt/Media/university/cnty/master_project/OLD_NEW/Diplom/00_Master_project_main_16.02.2020/Sources_v2_08.08.2014_work/ALL/default
+
+OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(notdir $(SRCS_PATHS)))
+
+find_source = $(firstword $(filter %$(1:.o=.c),$(SRCS_PATHS)))
+
+## Build
+all: $(TARGET) main.hex main.eep main.lss size
+	@echo "Target all finished"
+
+## Compile
+$(OBJ_DIR)/%.o: $(SRCS_PATHS)
+	@echo "Compile target:"
+	@$(eval OBJ_FILE = $@)
+	@echo "OBJ_FILE      : ${OBJ_FILE}"
+	@$(eval OBJ_NAME = $(notdir $(OBJ_FILE)))
+	@$(eval SRC_FILE = $(call find_source,$(OBJ_NAME)))
+	@echo "SRC_FILE      : ${SRC_FILE}"
+	$(CC) $(INCLUDES) $(CFLAGS) -c  '${SRC_FILE}' -o '${OBJ_FILE}'
+
+## Objects explicitly added by the user
+LINKONLYOBJECTS = 
+
+## Link
+$(TARGET): $(OBJS)
+	@echo "Link target   : $@"
+	$(CC) $(LDFLAGS) $(OBJS) $(LINKONLYOBJECTS) $(LIBDIRS) $(LIBS) -o $(TARGET)
+
+%.hex: $(TARGET)
+	avr-objcopy -O ihex $(HEX_FLASH_FLAGS)  $< $@
+
+%.eep: $(TARGET)
+	-avr-objcopy $(HEX_EEPROM_FLAGS) -O ihex $< $@ || exit 0
+
+%.lss: $(TARGET)
+	avr-objdump -h -S $< > $@
+
+size: ${TARGET}
+	@echo
+	@avr-size -C --mcu=${MCU} ${TARGET}
+
+## Clean target
+.PHONY: clean
+clean: clean_artifacts clean_objects
+	echo "Target clean finished"
+
+clean_objects: $(OBJS)
+	@echo "Cleaning object files..."
+	@for obj in $(OBJS); do \
+		echo "Removing object: $$obj"; \
+		rm -f $$obj; \
+	done
+
+clean_artifacts:
+	@echo "Cleaning artifact files..."
+	-rm -rf main.elf dep/* main.hex main.eep main.lss main.map
+
+## Other dependencies
+-include $(shell mkdir dep 2>NUL) $(wildcard dep/*)
+
